@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Kehadiran Pelajar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form, .attendance-list {
+            max-width: 400px;
+            margin: 0 auto 20px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        .attendance-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        .attendance-list li {
+            padding: 10px;
+            background: #f9f9f9;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sistem Kehadiran Pelajar</h1>
+    <form id="attendance-form">
+        <label for="student-name">Nama Pelajar:</label>
+        <input type="text" id="student-name" placeholder="Masukkan nama pelajar" required>
+        <button type="submit">Tanda Kehadiran</button>
+    </form>
+
+    <div class="attendance-list">
+        <h2>Senarai Kehadiran</h2>
+        <ul id="attendance-list">
+            <!-- Senarai pelajar hadir akan muncul di sini -->
+        </ul>
+    </div>
+
+    <script>
+        const form = document.getElementById('attendance-form');
+        const studentNameInput = document.getElementById('student-name');
+        const attendanceList = document.getElementById('attendance-list');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Dapatkan nama pelajar
+            const studentName = studentNameInput.value.trim();
+            if (studentName === '') return;
+
+            // Tambah nama pelajar ke senarai kehadiran
+            const listItem = document.createElement('li');
+            listItem.textContent = studentName;
+            attendanceList.appendChild(listItem);
+
+            // Kosongkan input selepas submit
+            studentNameInput.value = '';
+        });
+    </script>
+</body>
+</html>
